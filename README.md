@@ -1,7 +1,13 @@
 # Documentation HAPI FHIR JPA Server
 
 ## Introduction
-The purpose of this HAPI FHIR JPA Server is to provide a Proof of Concept where it functions like a metadata register. [HAPI FHIR](https://hapifhir.io/) is a complete implementation of the [HL7 FHIR](https://www.hl7.org/fhir/) standard for healthcare interoperability in Java. It is an open source software licensed under the business-friendly [Apache Software License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+The purpose of this HAPI FHIR JPA Server is to provide a Proof of Concept where
+it functions like a metadata register. It is part of the [GFModules project](https://github.com/minvws/gfmodules-coordination) which is currently under development.
+The information in this repository is subject to change. The GFModules project is a collection of applications that
+have the purpose to improve the data exchange between healthcare providers. [HAPI FHIR](https://hapifhir.io/) is a complete implementation 
+of the [HL7 FHIR](https://www.hl7.org/fhir/) standard for healthcare interoperability in Java. It is an open 
+source software licensed under the business-friendly [Apache Software License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
 
 ### JPA server
 The HAPI FHIR JPA server offers a complete RESTful FHIR server implementation using JPA 2.0 for database persistence. This project is build up from a [starter repository](https://github.com/hapifhir/hapi-fhir-jpaserver-starter) to deploy an FHIR server, the full source can be found [here](https://github.com/hapifhir/hapi-fhir).
