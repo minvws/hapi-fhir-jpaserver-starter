@@ -104,7 +104,7 @@ the [pseudonym-exchange-service](https://github.com/minvws/nl-irealisatie-zmodul
 To find your provider-id, look in the [settings file](src/main/resources/application.yaml).
 
 In the address DB you should have a entry that sets the address endpoint to: http://host.docker.internal:8080/fhir
-And to set up the provider in the pseudonym service follow these steps:
+and to set up the provider in the pseudonym service with the following steps:
 1. do the following curl request in the terminal
 ```curl
 curl -X 'POST' \
