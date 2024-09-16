@@ -116,20 +116,22 @@ curl -X 'POST' \
   "bsn_hash": "2b826afa1c71f571a007dad61ce9fb9b63a24a328aa4ac009484a198ff565c51"
 }'
 ```
-2. Copy generated pseudonym
+2. Copy generated pseudonym, it would look like the following:
+```{"pseudonym":"79693551-2195-464f-9e8f-b5a7b90ec854"}```
 3. Open database editor to the `hapi` database
 4. Go to table `hfj_res_ver`
 5. Edit the extension in the `patient` resource entry
+![assets/img.png](assets/img.png)
 6. Replace the patient's extensions UUID with the copied pseudonym
 
-Finally test whether this is all setup correctly:
-1. Do curl request:
+Finally test whether the pseudonym service and the right pseudonym are all setup correctly:
+1. Do curl request, this same pseudonym is used by the timeline service as a sample pseudonym and it is coupled to the same bsn_hash that was used with setting the provider ID:
 ```curl
 curl 'http://localhost:8080/fhir/ImagingStudy/_search?pseudonym=677b33c7-30e0-4fe1-a740-87fd73c4dfaf'
 ```
-If you do not get any imaging studies back in the repsonse then the HAPI is not set up correctly.
+If you do not get any imaging studies back in the response then the HAPI is not set up correctly. 
 
-2. Check if [timeline service](http://localhost:8500/) works as well
+2. If you do get imaging studies back then try if [timeline service](http://localhost:8500/) works as well
 
 ### Setting properties
 In the [application.yaml](src/main/resources/application.yaml) file, you can configure most server and HAPI settings, enable or disable components, and set custom resource providers and interceptors.  
