@@ -44,7 +44,7 @@ In the extensive [DOCS](https://hapifhir.io/hapi-fhir/docs/getting_started/intro
 ## JPA Server setup as Metadata register
 This set-up is only created for Linux, however, Windows would work as well.
 To get started:
-1. Clone or fork the JPA server starter GitHub repository: https://github.com/thomas-samoht/hapi-fhir-jpaserver-starter
+1. Clone or fork the JPA server starter GitHub repository: https://github.com/minvws/hapi-fhir-jpaserver-starter
 2. Install a JDK: Minimum JDK17 or newer. A good [OpenJDK](https://openjdk.org/) is Azul Zulu: https://www.azul.com/downloads/?package=jdk#zulu
 3. If your editor has no Maven support, install Maven with the following link: https://maven.apache.org/download.cgi
 4. Install Docker: https://docs.docker.com/engine/install/
