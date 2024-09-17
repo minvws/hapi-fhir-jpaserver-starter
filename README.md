@@ -60,20 +60,20 @@ at least one ImagingStudy has to be added to the HAPI database._
 **To easily set up sample FHIR entries use the following steps:**
 1. Start the JPA server as shown above
 2. Start all the needed modules as shown in [GFModules project](https://github.com/minvws/gfmodules-coordination)
-2. Open new terminal in project directory
-3. Run the following command to get a bundle with sample data loaded in:
+3. Open new terminal in project directory
+4. Run the following command to get a bundle with sample data loaded in:
 
 ```bash
    sh create_patient.sh
 ```
 
-4. Test whether the HAPI has successfully gotten the data:
+5. Test whether the HAPI has successfully gotten the data:
 
 ```curl 
 curl -X GET http://localhost:8080/fhir/Patient/3
 ```
 
-5. It should return something like:
+6. It should return something like:
 ```json
 {
    "resourceType": "Patient",
@@ -97,8 +97,13 @@ curl -X GET http://localhost:8080/fhir/Patient/3
 }
 ```
 
-6. If you do get a correct result back then try if [timeline service](http://localhost:8500/) works as well
-7. Use for the BSN the input: `123456789` This will load the created patient
+7. If you do get a correct result back then try if [timeline service](http://localhost:8500/) works as well
+8. Use for the BSN the input: `123456789` This will load the created patient
+
+### Review
+* Addresses database received a new endpoint, pointing to this HAPI.
+* The pseudonyms  database contains three extra pseudonyms from three providers, Timeline service, HAPI, referral service.
+* In the referrals database, a row is added with a pseudonym, URA that corresponds with the addresses DB and with data domain set to beeldbank.
 
 ### Setting properties
 In the [application.yaml](src/main/resources/application.yaml) file, you can configure most server and HAPI settings, enable or disable components, and set custom resource providers and interceptors.  
