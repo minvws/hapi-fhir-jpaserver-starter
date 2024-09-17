@@ -2,18 +2,16 @@ package ca.uhn.fhir.jpa.starter.ResourceProvider;
 
 import ca.uhn.fhir.jpa.api.dao.IFhirResourceDao;
 import ca.uhn.fhir.jpa.searchparam.SearchParameterMap;
+import ca.uhn.fhir.jpa.starter.services.CommonServices;
 import ca.uhn.fhir.rest.annotation.*;
 import ca.uhn.fhir.rest.api.MethodOutcome;
 import ca.uhn.fhir.rest.api.server.RequestDetails;
 import ca.uhn.fhir.rest.server.IResourceProvider;
 import org.hl7.fhir.r5.model.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -23,12 +21,13 @@ import java.util.stream.Collectors;
 @Component
 public class PatientResourceProvider implements IResourceProvider {
 
-	private static final Logger log = LoggerFactory.getLogger(PatientResourceProvider.class);
-
 	private final IFhirResourceDao<Patient> patientDao;
+	private final CommonServices commonServices;
 
-	public PatientResourceProvider(IFhirResourceDao<Patient> patientDao) {
+
+	public PatientResourceProvider(IFhirResourceDao<Patient> patientDao, CommonServices commonServices) {
 		this.patientDao = patientDao;
+		this.commonServices = commonServices;
 	}
 
 	/**
@@ -41,8 +40,8 @@ public class PatientResourceProvider implements IResourceProvider {
 	 *    DAO create method outcome
 	 */
 	@Create
-	public MethodOutcome createPatient(@ResourceParam Patient thePatient, RequestDetails theRequestDetails) {
-		String uuid = UUID.randomUUID().toString();
+	public MethodOutcome createPatient(@ResourceParam Patient thePatient, RequestDetails theRequestDetails) throws Exception {
+		String uuid = commonServices.registerPseudonym();
 		Extension ext = new Extension();
 		ext.setUrl("https://example.com/extensions#pseudonym");
 		ext.setValue(new UuidType(uuid));
@@ -70,4 +69,6 @@ public class PatientResourceProvider implements IResourceProvider {
 	public Class<Patient> getResourceType() {
 		return Patient.class;
 	}
+
+
 }
