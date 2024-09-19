@@ -38,8 +38,12 @@ public class BundlePlainProvider {
 	 *
 	 * @param theBundle
 	 *    Resource of the to be created bundle
+	 * @param theRequestDetails
+	 * 	Contains the details of the request
 	 * @return
 	 *    DAO create method outcome
+	 * @throws Exception
+	 * 	When pseudonym cannot be registered or when referral cannot be made
 	 */
 	@Transaction
 	public Bundle createPatientFromBundle(@TransactionParam Bundle theBundle, RequestDetails theRequestDetails) throws Exception {
@@ -50,20 +54,27 @@ public class BundlePlainProvider {
 				IBaseResource createdResource = null;
 
 				if (entry.getResource() instanceof Patient patient) {
+					log.info("Patient received in bundle");
 					String uuid = commonServices.registerPseudonym();
 					Extension ext = new Extension();
 					ext.setUrl("https://example.com/extensions#pseudonym");
 					ext.setValue(new UuidType(uuid));
 					patient.addExtension(ext);
 					createdResource = patientDao.create(patient, theRequestDetails).getResource();
+					log.info("Patient created with id {}", createdResource.getIdElement().getIdPart());
 				}
 				else if (entry.getResource() instanceof Organization organization) {
+					log.info("Organization received in bundle");
 					createdResource = orgDao.create(organization, theRequestDetails).getResource();
+					log.info("Organization created with id {}", createdResource.getIdElement().getIdPart());
 				}
 				else if (entry.getResource() instanceof Practitioner practitioner) {
+					log.info("Practitioner received in bundle");
 					createdResource = pracDao.create(practitioner, theRequestDetails).getResource();
+					log.info("Practitioner created with id {}", createdResource.getIdElement().getIdPart());
 				}
 				else if (entry.getResource() instanceof ImagingStudy imagingStudy) {
+					log.info("ImagingStudy received in bundle");
 					String referencePatient = imagingStudy.getSubject().getReference();
 					Patient patient = patientDao.read(new IdType(referencePatient), theRequestDetails);
 					Extension ext = patient.getExtension().get(0);
@@ -72,6 +83,7 @@ public class BundlePlainProvider {
 					commonServices.createReferral(patientPseudonym);
 
 					createdResource = imageDao.create(imagingStudy, theRequestDetails).getResource();
+					log.info("ImagingStudy created with id {}", createdResource.getIdElement().getIdPart());
 				}
 				else {
 					log.error("Resource not created");

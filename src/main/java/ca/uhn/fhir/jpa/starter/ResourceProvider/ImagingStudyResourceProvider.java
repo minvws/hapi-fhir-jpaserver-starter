@@ -48,8 +48,12 @@ public class ImagingStudyResourceProvider implements IResourceProvider {
 	 *
 	 * @param pseudonym
 	 *    Query parameter called pseudonym of type UuidType is the only search criteria.
+	 * @param theRequestDetails
+	 * 	Contains the details of the request
 	 * @return
 	 *    Returns a list of ImagingStudies belonging to the patient
+	 * @throws Exception
+	 * 	When pseudonym cannot be registered
 	 */
 	@Search
 	public List<ImagingStudy> searchStudy(@RequiredParam(name = "pseudonym") UuidType pseudonym, RequestDetails theRequestDetails) throws Exception {
@@ -82,8 +86,21 @@ public class ImagingStudyResourceProvider implements IResourceProvider {
 		return filteredstudies;
 	}
 
+	/**
+	 * Create method to create ImagingStudies
+	 * usage: POST /fhir/ImagingStudy  Place FHIR resource of ImagingStudy in JSON body
+	 *
+	 * @param theImagingStudy
+	 *    Resource parameter for ImagingStudy.
+	 * @param theRequestDetails
+	 * 	Contains the details of the request
+	 * @return
+	 *    Returns the method outcome of the DAO create method
+	 * @throws Exception
+	 * 	When pseudonym cannot be registered
+	 */
 	@Create
-	public MethodOutcome createImagingStudy(@ResourceParam ImagingStudy theImagingStudy, RequestDetails theRequestDetails) throws IOException {
+	public MethodOutcome createImagingStudy(@ResourceParam ImagingStudy theImagingStudy, RequestDetails theRequestDetails) throws Exception {
 		String referencePatient = theImagingStudy.getSubject().getReference();
 		Patient patient = patientDao.read(new IdType(referencePatient), theRequestDetails);
 		Extension ext = patient.getExtension().get(0);
