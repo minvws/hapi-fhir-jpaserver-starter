@@ -1,0 +1,64 @@
+{
+  "id": "18420b5d-52a5-4825-b57c-b625146473a6",
+  "meta": {
+    "source": "https://example.org/Organization",
+    "versionId": 1,
+    "lastUpdated": "2024-11-26T08:59:06.916094+01:00"
+  },
+  "name": "Fields, Diaz and Berry",
+  "type": [
+    {
+      "coding": [
+        {
+          "code": "clinic",
+          "system": "http://example.org/org-type",
+          "display": "Hospital"
+        }
+      ]
+    }
+  ],
+  "active": false,
+  "address": [
+    {
+      "use": "work",
+      "city": "Lake Diamondmouth",
+      "text": "3628 Laura Orchard Suite 554\nScottton, ME 02995",
+      "type": "both",
+      "state": "ND",
+      "country": "Papua New Guinea",
+      "postalCode": "31644"
+    }
+  ],
+  "contact": [
+    {
+      "name": {
+        "use": "usual",
+        "text": "Lisa Robinson",
+        "given": [
+          "Amanda"
+        ],
+        "family": "Hernandez"
+      },
+      "address": {
+        "use": "billing",
+        "city": "Garciafurt",
+        "text": "USNV Rodriguez\nFPO AP 95819",
+        "type": "both",
+        "state": "TX",
+        "country": "Kenya",
+        "postalCode": "36494"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "value": "65acf633-dddf-49cb-b169-54a09268bed6",
+      "system": "http://example.org/org"
+    },
+    {
+      "value": "23665292",
+      "system": "http://fhir.nl/fhir/NamingSystem/ura"
+    }
+  ],
+  "resourceType": "Organization"
+}

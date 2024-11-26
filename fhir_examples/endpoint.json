@@ -1,0 +1,43 @@
+{
+  "id": "06192322-351d-432d-bb32-1a161f6e378f",
+  "meta": {
+    "source": "https://example.org/Endpoint",
+    "versionId": 1,
+    "lastUpdated": "2024-11-26T08:58:55.578721+01:00"
+  },
+  "name": "Robertson-Briggs",
+  "header": [
+    "Content-Type: application/fhir+json"
+  ],
+  "status": "suspended",
+  "address": "http://mills-young.biz/bloghomepage.asp",
+  "identifier": [
+    {
+      "value": "03082735-1e69-4dea-b595-f8c9cba9a04a",
+      "system": "http://example.org/endpoint"
+    }
+  ],
+  "payloadType": [
+    {
+      "coding": [
+        {
+          "code": "application/fhir+xml",
+          "system": "http://example.org/payload-type",
+          "display": "FHIR JSON"
+        }
+      ]
+    }
+  ],
+  "resourceType": "Endpoint",
+  "connectionType": {
+    "code": "hl7-fhir-rest",
+    "system": "http://example.org/connection-type",
+    "display": "HL7 FHIR REST"
+  },
+  "payloadMimeType": [
+    "application/fhir+json"
+  ],
+  "managingOrganization": {
+    "reference": "Organization/18420b5d-52a5-4825-b57c-b625146473a6"
+  }
+}
