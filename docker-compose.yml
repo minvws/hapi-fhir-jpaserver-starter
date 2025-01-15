@@ -1,16 +1,31 @@
-version: "3"
+version: '3.7'
+
 services:
-  hapi-fhir-postgres:
-    image: postgres:15-alpine
-    container_name: hapi-fhir-postgres
+  fhir:
+    container_name: fhir
+    image: "hapiproject/hapi:latest"
+    ports:
+      - "8080:8080"
+    configs:
+      - source: hapi
+        target: /app/config/application.yaml
+      - source: hapi-extra-classes
+        target: /app/extra-classes
+    depends_on:
+      - db
+
+  db:
+    image: postgres
     restart: always
     environment:
-      POSTGRES_DB: "hapi"
-      POSTGRES_USER: "admin"
-      POSTGRES_PASSWORD: "admin"
-    volumes:
-      - hapi-fhir-postgres:/var/lib/postgresql/data
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: hapi
     ports:
-      - "8432:5432"
-volumes:
-  hapi-fhir-postgres:
+      - "5422:5432"
+
+configs:
+  hapi:
+     file: ./hapi.application.yaml
+  hapi-extra-classes:
+     file: ./target/classes
