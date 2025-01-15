@@ -79,8 +79,6 @@ public class AppProperties {
   private Logger logger = new Logger();
   private Subscription subscription = new Subscription();
   private Cors cors = null;
-  private PseudonymExchangeService pseudonymExchangeService = null;
-  private AddReferralService addReferralService	= null;
   private Partitioning partitioning = null;
   private Boolean install_transitive_ig_dependencies = true;
   private Map<String, PackageInstallationSpec> implementationGuides = null;
@@ -203,21 +201,6 @@ public Cors getCors() {
 
   public void setCors(Cors cors) {
     this.cors = cors;
-  }
-
-  public PseudonymExchangeService getPseudonymExchangeService() {
-		return pseudonymExchangeService;
-  }
-
-  public void setPseudonymExchangeService(PseudonymExchangeService pseudonymExchangeService) {
-		this.pseudonymExchangeService = pseudonymExchangeService;
-  }
-
-  public AddReferralService addReferralService() {
-		return addReferralService;
-  }
-  public void setAddReferralService(AddReferralService addReferralService) {
-		this.addReferralService = addReferralService;
   }
 
   public List<Bundle.BundleType> getAllowed_bundle_types() {
@@ -658,38 +641,6 @@ public Cors getCors() {
 
 	public void setLanguage_search_parameter_enabled(Boolean language_search_parameter_enabled) {
 		this.language_search_parameter_enabled = language_search_parameter_enabled;
-	}
-
-	public static class PseudonymExchangeService {
-		private String endpoint = "";
-		private String targetProviderId = "";
-
-		public String getEndpoint() {
-			return endpoint;
-		}
-
-		public void setEndpoint(String endpoint) {
-			this.endpoint = endpoint;
-		}
-
-		public String getTargetProviderId() {
-			return targetProviderId;
-		}
-		public void setTargetProviderId(String targetProviderId) {
-			this.targetProviderId = targetProviderId;
-		}
-	}
-
-	public static class AddReferralService {
-		private String endpoint = "";
-
-		public String getEndpoint() {
-			return endpoint;
-		}
-
-		public void setEndpoint(String endpoint) {
-			this.endpoint = endpoint;
-		}
 	}
 
 	public static class Cors {
